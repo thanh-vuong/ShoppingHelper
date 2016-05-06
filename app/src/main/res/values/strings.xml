@@ -2,4 +2,5 @@
     <string name="app_name">Shopping Helper</string>
 
     <string name="title_shopping_list_activity">Shopping List</string>
+    <string name="title_activity_item">Item</string>
 </resources>

@@ -10,6 +10,15 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ShoppingListActivity">
         </activity>
+        <activity
+            android:name=".ItemActivity"
+            android:label="@string/title_activity_item"
+            android:parentActivityName=".ShoppingListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.quincycollege.csi257.shoppinghelper.ShoppingListActivity"/>
+        </activity>
     </application>
 
 </manifest>
