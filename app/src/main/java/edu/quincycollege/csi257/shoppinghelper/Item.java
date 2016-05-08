@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.UUID;
 
 /**
- * Created by student on 5/6/2016.
+ * Created by Chico on 5/6/2016.
  */
 public class Item {
 
