@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by Chiho on 5/8/2016.
+ * Created by Ch on 5/8/2016.
  */
 public class ShoppingList {
     private static ShoppingList sShoppingList;
