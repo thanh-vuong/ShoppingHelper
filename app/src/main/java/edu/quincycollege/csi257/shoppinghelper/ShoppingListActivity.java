@@ -22,6 +22,8 @@ public class ShoppingListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ShoppingAdapter mShoppingAdapter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

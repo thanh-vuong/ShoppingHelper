@@ -8,6 +8,7 @@ import java.util.UUID;
  */
 public class Item {
 
+
     private String brand;
     private String name;
     private double price;
