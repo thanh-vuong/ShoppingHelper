@@ -12,8 +12,11 @@
     tools:context="edu.quincycollege.csi257.shoppinghelper.ShoppingListActivity"
     tools:showIn="@layout/activity_shopping_list">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/shopping_recycler_view">
+
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

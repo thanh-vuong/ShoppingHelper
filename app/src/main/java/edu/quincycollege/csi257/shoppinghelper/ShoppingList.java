@@ -15,11 +15,16 @@ public class ShoppingList {
             sShoppingList = new ShoppingList();
         return sShoppingList;
     }
-    private List<Item> mShoppingList;
 
+    private List<Item> mShoppingList;
 
     private ShoppingList() {
         mShoppingList = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            Item item = new Item();
+            item.setName("item #" + (i + 1));
+            mShoppingList.add(item);
+        }
     }
 
     private void addItem(Item newItem){
