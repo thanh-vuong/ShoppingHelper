@@ -10,7 +10,6 @@ import java.util.UUID;
 public class ShoppingList {
     private static ShoppingList sShoppingList;
 
-
     public static ShoppingList get() {
         if (sShoppingList == null)
             sShoppingList = new ShoppingList();

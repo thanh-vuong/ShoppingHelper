@@ -22,8 +22,6 @@ public class ShoppingListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ShoppingAdapter mShoppingAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +86,8 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         public ItemHolder(View itemView) {
             super(itemView);
-            mItemName = (TextView)itemView;
-            //mItemName = (TextView)itemView.findViewById(R.id.list_item_name);
+            //mItemName = (TextView)itemView;
+            mItemName = (TextView)itemView.findViewById(R.id.list_item_name);
 
             itemView.setOnClickListener(this);
         }
@@ -98,7 +96,6 @@ public class ShoppingListActivity extends AppCompatActivity {
             mShoppingItem = item;
             mItemName.setText(item.getName());
         }
-
 
         @Override
         public void onClick(View v) {
@@ -118,9 +115,9 @@ public class ShoppingListActivity extends AppCompatActivity {
         @Override
         public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater =  LayoutInflater.from(parent.getContext());
-            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            //View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
             // for custom recycle adapter layout
-            //View view = layoutInflater.inflate(R.layout.list_item, parent, false);
+            View view = layoutInflater.inflate(R.layout.list_item, parent, false);
             return new ItemHolder(view);
         }
 
