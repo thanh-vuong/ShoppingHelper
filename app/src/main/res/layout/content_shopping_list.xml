@@ -9,8 +9,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="edu.quincycollege.csi257.shoppinghelper.ItemActivity"
-    tools:showIn="@layout/activity_item">
+    tools:context="edu.quincycollege.csi257.shoppinghelper.ShoppingListActivity"
+    tools:showIn="@layout/activity_shopping_list">
 
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/shopping_recycler_view">
+
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

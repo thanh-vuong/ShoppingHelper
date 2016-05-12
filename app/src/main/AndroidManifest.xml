@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="edu.quincycollege.csi257.shoppinghelper"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.quincycollege.csi257.shoppinghelper">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/title_shopping_list_activity"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShoppingListActivity">
+        <activity
+            android:name=".ShoppingListActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ItemActivity"
             android:label="@string/title_activity_item"
-            android:parentActivityName=".ShoppingListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.quincycollege.csi257.shoppinghelper.ShoppingListActivity"/>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
