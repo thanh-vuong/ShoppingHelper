@@ -114,6 +114,9 @@ public class ShoppingListActivity extends AppCompatActivity {
             //Toast.makeText(getActivity(), mClothingItem.getName(), Toast.LENGTH_SHORT).show();
             //Intent intent = ClothingPagerActivity.newIntent(getActivity(), mClothingItem.getId());
             //startActivity(intent);
+
+
+            startActivity(new Intent(ShoppingListActivity.this, ItemActivity.class));
         }
     }
 

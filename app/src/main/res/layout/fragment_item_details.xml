@@ -1,0 +1,130 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="edu.quincycollege.csi257.shoppinghelper.ItemDetailsFragment"
+    android:id="@+id/fragment_item_details"
+    >
+
+    <TableRow>
+        <TextView
+            android:text="@string/label_item_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/item_brand"
+            android:text="@string/not_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/label_item_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/item_product"
+            android:text="@string/not_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/label_item_package_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/item_package_size"
+            android:text="@string/not_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/label_item_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/item_total_price"
+            android:text="@string/not_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/label_item_unit_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+        <TextView
+            android:id="@+id/item_unit_price"
+            android:text="@string/not_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/label_item_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/item_store"
+            android:text="@string/not_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/label_item_upc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+        <TextView
+            android:id="@+id/upc"
+            android:text="@string/not_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"/>
+    </TableRow>
+
+</TableLayout>
+
+<!--<LinearLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:context="edu.quincycollege.csi257.shoppinghelper.ItemDetailsFragment"-->
+    <!--android:id="@+id/fragment_item_details">-->
+
+    <!--<TextView-->
+        <!--android:text="@string/label_item_brand"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="5dp"/>-->
+    <!--<EditText-->
+        <!--android:id="@+id/brand"-->
+        <!--android:text="@string/not_available"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="5dp"/>-->
+<!--</LinearLayout>-->

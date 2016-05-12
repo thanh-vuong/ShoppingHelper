@@ -2,4 +2,14 @@
     <string name="app_name">Shopping Helper</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_item">Item</string>
+
+    <string name="label_item_brand">Brand</string>
+    <string name="label_item_product">Product</string>
+    <string name="label_item_unit_price">Unit Price</string>
+    <string name="label_item_package_size">Package Size</string>
+    <string name="label_item_total_price">Total Price</string>
+    <string name="label_item_store">Store</string>
+    <string name="label_item_upc">UPC</string>
+
+    <string name="not_available">Not Available</string>
 </resources>
