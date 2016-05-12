@@ -22,7 +22,13 @@ public class ShoppingList {
         mShoppingList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             Item item = new Item();
+            item.setBrand("band #" + (i + 1));
             item.setName("item #" + (i + 1));
+            item.setPriceUnit(1);
+            item.setPackageSize(128);
+            item.setPackageSizeUnit("fl oz");
+            item.setPrice(5.29);
+
             mShoppingList.add(item);
         }
     }

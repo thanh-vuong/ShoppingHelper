@@ -82,19 +82,31 @@ public class ShoppingListActivity extends AppCompatActivity {
             implements View.OnClickListener {
 
         private Item mShoppingItem;
-        private TextView mItemName;
+        private TextView mItemBrand;
+        private TextView mItemProduct;
+        private TextView mItemUnit;
+        private TextView mItemPackage;
+        private TextView mItemPrice;
 
         public ItemHolder(View itemView) {
             super(itemView);
             //mItemName = (TextView)itemView;
-            mItemName = (TextView)itemView.findViewById(R.id.list_item_name);
+            mItemBrand = (TextView)itemView.findViewById(R.id.list_item_brand);
+            mItemProduct = (TextView)itemView.findViewById(R.id.list_item_product);
+            mItemUnit = (TextView)itemView.findViewById(R.id.list_item_unit);
+            mItemPackage = (TextView)itemView.findViewById(R.id.list_item_package);
+            mItemPrice = (TextView)itemView.findViewById(R.id.list_item_price);
 
             itemView.setOnClickListener(this);
         }
 
         public void bindClothingItem(Item item) {
             mShoppingItem = item;
-            mItemName.setText(item.getName());
+            mItemBrand.setText(item.getBrand());
+            mItemProduct.setText(item.getName());
+            mItemUnit.setText(Integer.toString(item.getPriceUnit()));
+            mItemPackage.setText(Integer.toString(item.getPackageSize()) + " " + item.getPackageSizeUnit());
+            mItemPrice.setText("$" + Double.toString(item.getPrice()));
         }
 
         @Override
