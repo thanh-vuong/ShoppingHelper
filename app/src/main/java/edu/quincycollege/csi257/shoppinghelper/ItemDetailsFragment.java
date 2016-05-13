@@ -1,12 +1,20 @@
 package edu.quincycollege.csi257.shoppinghelper;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 /**
@@ -26,6 +34,9 @@ public class ItemDetailsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    // References to View objects in layout
+    private Button mScanButton;
 
     private OnUpcScannedListener mListener;
 
@@ -58,13 +69,21 @@ public class ItemDetailsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_item_details, container, false);
+
+        mScanButton = (Button)view.findViewById(R.id.button_upc_scan);
+        mScanButton.setOnClickListener(new UpcScanOnClickListener());
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,6 +110,15 @@ public class ItemDetailsFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("SCANNER", "activity = " + getActivity().toString());
+        Toast.makeText(getActivity(),
+                "scanned upc = " + getUpcScanResult(requestCode, resultCode, data),
+                Toast.LENGTH_SHORT).show();
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -103,6 +131,33 @@ public class ItemDetailsFragment extends Fragment {
      */
     public interface OnUpcScannedListener {
         // TODO: Update argument type and name
-        void onUpcScanned(int upc);
+        void onUpcScanned(String upc);
+    }
+
+    // Handlers
+    private class UpcScanOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            IntentIntegrator scanIntegrator = new IntentIntegrator(ItemDetailsFragment.this.getActivity());
+            scanIntegrator.initiateScan();
+        }
+    }
+
+    public String getUpcScanResult(int requestCode,
+                                   int resultCode,
+                                   Intent data) {
+        String result = "";
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode,
+                resultCode,
+                data);
+
+        if (scanResult != null) {
+            result = scanResult.getContents();
+
+//            ToneGenerator beeper = new ToneGenerator(AudioManager.STREAM_MUSIC, 50);
+//            beeper.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
+        }
+
+        return result;
     }
 }

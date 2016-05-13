@@ -132,7 +132,7 @@ public class ShoppingListActivity extends AppCompatActivity {
             LayoutInflater layoutInflater =  LayoutInflater.from(parent.getContext());
             //View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
             // for custom recycle adapter layout
-            View view = layoutInflater.inflate(R.layout.list_item, parent, false);
+            View view = layoutInflater.inflate(R.layout.viewholder_item, parent, false);
             return new ItemHolder(view);
         }
 

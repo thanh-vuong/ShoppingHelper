@@ -14,5 +14,7 @@
     <string name="label_item_store">Store</string>
     <string name="label_item_upc">UPC</string>
 
+    <string name="button_upc_scan">Scan</string>
+
     <string name="not_available">Not Available</string>
 </resources>
