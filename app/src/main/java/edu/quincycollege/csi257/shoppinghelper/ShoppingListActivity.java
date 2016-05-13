@@ -67,7 +67,7 @@ public class ShoppingListActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        ShoppingList closet = ShoppingList.get();
+        ShoppingList closet = ShoppingList.get(this);
         List<Item> clothingList = closet.getShoppingList();
         if (mShoppingAdapter == null) {
             mShoppingAdapter = new ShoppingAdapter(clothingList);
@@ -103,9 +103,9 @@ public class ShoppingListActivity extends AppCompatActivity {
         public void bindClothingItem(Item item) {
             mShoppingItem = item;
             mItemBrand.setText(item.getBrand());
-            mItemProduct.setText(item.getName());
+            mItemProduct.setText(item.getProduct());
             mItemUnit.setText(Integer.toString(item.getPriceUnit()));
-            mItemPackage.setText(Integer.toString(item.getPackageSize()) + " " + item.getPackageSizeUnit());
+            mItemPackage.setText(Double.toString(item.getPackageSize()) + " " + item.getPackageSizeUnit());
             mItemPrice.setText("$" + Double.toString(item.getPrice()));
         }
 
