@@ -16,5 +16,22 @@
 
     <string name="button_upc_scan">Scan</string>
 
-    <string name="not_available">Not Available</string>
+    <string name="msg_not_available">Not Available</string>
+    <string name="msg_select_unit">Select Unit</string>
+
+    <string-array name="package_size_units">
+        <item>Count</item>
+        <item>Gal</item>
+        <item>fl oz</item>
+        <item>lb</item>
+        <item>oz</item>
+    </string-array>
+
+    <string-array name="price_units">
+        <item>USD</item>
+        <item>CAD</item>
+    </string-array>
+
+    <string name="title_activity_item_search">Item Search</string>
+
 </resources>

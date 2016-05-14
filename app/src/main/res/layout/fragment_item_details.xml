@@ -14,7 +14,7 @@
             android:padding="5dp"/>
         <EditText
             android:id="@+id/item_brand"
-            android:text="@string/not_available"
+            android:text="@string/msg_not_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
@@ -27,8 +27,8 @@
             android:layout_height="wrap_content"
             android:padding="5dp"/>
         <EditText
-            android:id="@+id/item_product"
-            android:text="@string/not_available"
+            android:id="@+id/item_name"
+            android:text="@string/msg_not_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
@@ -42,10 +42,16 @@
             android:padding="5dp"/>
         <EditText
             android:id="@+id/item_package_size"
-            android:text="@string/not_available"
+            android:text="@string/msg_not_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
+        <Spinner
+            android:id="@+id/item_package_size_unit"
+            android:prompt="@string/msg_select_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Spinner>
     </TableRow>
 
     <TableRow>
@@ -56,10 +62,17 @@
             android:padding="5dp"/>
         <EditText
             android:id="@+id/item_total_price"
-            android:text="@string/not_available"
+            android:text="@string/msg_not_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
+        <Spinner
+            android:id="@+id/item_total_price_unit"
+            android:prompt="@string/msg_select_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </Spinner>
     </TableRow>
 
     <TableRow>
@@ -70,10 +83,11 @@
             android:padding="5dp"/>
         <TextView
             android:id="@+id/item_unit_price"
-            android:text="@string/not_available"
+            android:text="@string/msg_not_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
+
     </TableRow>
 
     <TableRow>
@@ -84,7 +98,7 @@
             android:padding="5dp"/>
         <EditText
             android:id="@+id/item_store"
-            android:text="@string/not_available"
+            android:text="@string/msg_not_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
@@ -97,8 +111,8 @@
             android:layout_height="wrap_content"
             android:padding="5dp"/>
         <TextView
-            android:id="@+id/upc"
-            android:text="@string/not_available"
+            android:id="@+id/item_upc"
+            android:text="@string/msg_not_available"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>

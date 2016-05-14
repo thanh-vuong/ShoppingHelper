@@ -2,19 +2,22 @@ package edu.quincycollege.csi257.shoppinghelper;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.ArrayList;
 
 
 /**
@@ -35,7 +38,13 @@ public class ItemDetailsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    String[] mPackageSizeUnits;
+    String[] mPriceUnits;
+
     // References to View objects in layout
+    private Spinner mPackageSizeUnitSpinner;
+    private Spinner mPriceUnitSpinner;
+    private TextView mUpcText;
     private Button mScanButton;
 
     private OnUpcScannedListener mListener;
@@ -70,7 +79,8 @@ public class ItemDetailsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
+        mPackageSizeUnits = getResources().getStringArray(R.array.package_size_units);
+        mPriceUnits = getResources().getStringArray(R.array.price_units);
     }
 
     @Override
@@ -79,9 +89,28 @@ public class ItemDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_item_details, container, false);
 
+        mPackageSizeUnitSpinner = (Spinner)view.findViewById(R.id.item_package_size_unit);
+        ArrayAdapter<String> packageUnitsAdapter =
+                new ArrayAdapter<String>(getActivity(),
+                                         android.R.layout.simple_spinner_item,
+                                         mPackageSizeUnits);
+        packageUnitsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mPackageSizeUnitSpinner.setAdapter(packageUnitsAdapter);
+        mPackageSizeUnitSpinner.setOnItemSelectedListener(new OnPackageUnitSelectedListener());
+
+        mPriceUnitSpinner = (Spinner)view.findViewById(R.id.item_total_price_unit);
+        ArrayAdapter<String> priceUnitsAdapter =
+                new ArrayAdapter<String>(getActivity(),
+                                         android.R.layout.simple_spinner_item,
+                                         mPriceUnits);
+        priceUnitsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mPriceUnitSpinner.setAdapter(priceUnitsAdapter);
+        mPriceUnitSpinner.setOnItemSelectedListener(new OnPriceUnitSelectedListener());
+
+        mUpcText = (TextView)view.findViewById(R.id.item_upc);
+
         mScanButton = (Button)view.findViewById(R.id.button_upc_scan);
         mScanButton.setOnClickListener(new UpcScanOnClickListener());
-
 
         return view;
     }
@@ -113,10 +142,10 @@ public class ItemDetailsFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("SCANNER", "activity = " + getActivity().toString());
-        Toast.makeText(getActivity(),
-                "scanned upc = " + getUpcScanResult(requestCode, resultCode, data),
-                Toast.LENGTH_SHORT).show();
+        // Update item UPC
+        mUpcText.setText(getUpcScanResult(requestCode,
+                                          resultCode,
+                                          data));
     }
 
     /**
@@ -134,30 +163,51 @@ public class ItemDetailsFragment extends Fragment {
         void onUpcScanned(String upc);
     }
 
-    // Handlers
+    private class OnPackageUnitSelectedListener implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            Toast.makeText(getActivity(), "package size unit = " + mPackageSizeUnits[position], Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
+
+    private class OnPriceUnitSelectedListener implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            Toast.makeText(getActivity(), "price unit = " + mPriceUnits[position], Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
+
     private class UpcScanOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            // Start scanner for all known barcodes and use any camera.
             IntentIntegrator scanIntegrator = new IntentIntegrator(ItemDetailsFragment.this.getActivity());
             scanIntegrator.initiateScan();
         }
     }
 
-    public String getUpcScanResult(int requestCode,
+    private String getUpcScanResult(int requestCode,
                                    int resultCode,
                                    Intent data) {
-        String result = "";
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode,
-                resultCode,
-                data);
+                                                                       resultCode,
+                                                                       data);
 
-        if (scanResult != null) {
-            result = scanResult.getContents();
+//        ToneGenerator beeper = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+//        beeper.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
 
-//            ToneGenerator beeper = new ToneGenerator(AudioManager.STREAM_MUSIC, 50);
-//            beeper.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
-        }
-
-        return result;
+        return scanResult != null ?
+               scanResult.getContents() :
+               "";
     }
 }

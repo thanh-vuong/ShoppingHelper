@@ -115,7 +115,6 @@ public class ShoppingListActivity extends AppCompatActivity {
             //Intent intent = ClothingPagerActivity.newIntent(getActivity(), mClothingItem.getId());
             //startActivity(intent);
 
-
             startActivity(new Intent(ShoppingListActivity.this, ItemActivity.class));
         }
     }
