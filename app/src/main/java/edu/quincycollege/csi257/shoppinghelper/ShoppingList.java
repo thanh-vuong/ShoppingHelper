@@ -27,13 +27,13 @@ public class ShoppingList {
         return sShoppingList;
     }
 
-    //private List<Item> mShoppingList;
+
     private SQLiteDatabase mShoppingDb;
     private Random random = new Random();
 
     private ShoppingList(Context context) {
         mShoppingDb = new ShoppingBaseHelper(context.getApplicationContext()).getWritableDatabase();
-        //mShoppingList = new ArrayList<>();
+
         for (int i = 0; i < 20; i++) {
             Item item = new Item();
             item.setUpc((i + 100000000000L));
@@ -47,25 +47,37 @@ public class ShoppingList {
             item.setPackageSizeUnit("fl oz");
             item.setStore("Star Market");
 
-            //mShoppingList.add(item);
             addShoppingItem(item);
         }
     }
 
     private void addItem(Item newItem){
-        //mShoppingList.add(newItem);
+
         ContentValues values = ShoppingDbUtils.getContentValues(newItem);
         mShoppingDb.insert(ShoppingDbSchema.ShoppingTable.NAME, null, values);
     }
 
     private void removeItem(UUID id){
-//        for (int i = 0; i < mShoppingList.size(); i++)
-//            if (mShoppingList.get(i).getId().equals(id))
-//                mShoppingList.remove(i);
+
+        mShoppingDb.delete(ShoppingDbSchema.ShoppingTable.NAME,
+                ShoppingDbSchema.ShoppingTable.Cols.UUID + "=?",
+                new String[]{id.toString()});
     }
 
     private void clearList(){
-        //mShoppingList.clear();
+        ShoppingCursorWrapper cursor = queryShopping(null, null);
+        Item updateItem;
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                updateItem = cursor.getShoppingItem();
+                updateItem.setOnTheList(false);
+                updateClothingItem(updateItem);
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
     }
 
     public Item getClothingItem(UUID id) {
@@ -84,10 +96,27 @@ public class ShoppingList {
             cursor.close();
         }
 
-//        for (Item item : mShoppingList)
-//            if (item.getId().equals(id))
-//                return item;
-//        return null;
+    }
+
+    public List<Item> getItemList() {
+
+        ArrayList<Item> mClothingList = new ArrayList<Item>();
+        ShoppingCursorWrapper cursor = queryShopping(
+                ShoppingDbSchema.ShoppingTable.Cols.ON_THE_LIST + " = ?",
+                new String[]{"1"});
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                mClothingList.add(cursor.getShoppingItem());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return mClothingList;
+
     }
 
     public List<Item> getShoppingList() {
@@ -110,7 +139,6 @@ public class ShoppingList {
     }
 
     public void addShoppingItem(Item item) {
-        //mClothingList.add(item);
         ContentValues values = ShoppingDbUtils.getContentValues(item);
         mShoppingDb.insert(ShoppingDbSchema.ShoppingTable.NAME, null, values);
     }
