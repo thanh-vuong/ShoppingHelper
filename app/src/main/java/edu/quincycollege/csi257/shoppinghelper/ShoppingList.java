@@ -36,13 +36,13 @@ public class ShoppingList {
 
         for (int i = 0; i < 20; i++) {
             Item item = new Item();
-            item.setUpc((i + 100000000000L));
+            item.setUpc("");
             item.setOnTheList(random.nextBoolean());
             item.setBrand("band#" + (i + 1));
-            item.setProduct("item#" + (i + 1));
+            item.setName("item#" + (i + 1));
             item.setUnit(1);
             item.setPrice(5.29);
-            item.setPriceUnit(1);
+            item.setPriceUnit("USD");
             item.setPackageSize(128);
             item.setPackageSizeUnit("fl oz");
             item.setStore("Star Market");
@@ -72,7 +72,7 @@ public class ShoppingList {
             while (!cursor.isAfterLast()) {
                 updateItem = cursor.getShoppingItem();
                 updateItem.setOnTheList(false);
-                updateClothingItem(updateItem);
+                updateItem(updateItem);
                 cursor.moveToNext();
             }
         } finally {
@@ -80,7 +80,7 @@ public class ShoppingList {
         }
     }
 
-    public Item getClothingItem(UUID id) {
+    public Item getItem(UUID id) {
 
         ShoppingCursorWrapper cursor = queryShopping(
                 ShoppingDbSchema.ShoppingTable.Cols.UUID + " = ?",
@@ -143,7 +143,7 @@ public class ShoppingList {
         mShoppingDb.insert(ShoppingDbSchema.ShoppingTable.NAME, null, values);
     }
 
-    public void updateClothingItem(Item item) {
+    public void updateItem(Item item) {
         String uuidString = item.getId().toString();
         ContentValues values = ShoppingDbUtils.getContentValues(item);
         mShoppingDb.update(ShoppingDbSchema.ShoppingTable.NAME, values,

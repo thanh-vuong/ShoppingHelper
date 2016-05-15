@@ -1,6 +1,5 @@
 package edu.quincycollege.csi257.shoppinghelper;
 
-import java.io.File;
 import java.util.UUID;
 
 /**
@@ -9,13 +8,13 @@ import java.util.UUID;
 public class Item {
 
     private UUID id;
-    private long upc;
+    private String upc;
     private boolean onTheList;
     private String brand;
-    private String product;
+    private String name;
     private int unit;
     private double price;
-    private int priceUnit;
+    private String priceUnit;
     private double packageSize;
     private String packageSizeUnit;
     private String store;
@@ -28,20 +27,20 @@ public class Item {
     public Item(UUID id) {
 
         this.id = id;
-        upc = 000000000000;
+        upc = "";
         onTheList = true;
         brand = "";
-        product = "";
+        name = "";
         unit = 0;
         price = 0;
-        priceUnit = 0;
+        priceUnit = "";
         packageSize = 0;
         packageSizeUnit = "";
         store = "";
 
     }
 
-    public void setUpc(long upc) {
+    public void setUpc(String upc) {
         this.upc = upc;
     }
 
@@ -53,8 +52,8 @@ public class Item {
         this.brand = brand;
     }
 
-    public void setProduct(String name) {
-        this.product = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setUnit(int unit) {
@@ -65,7 +64,7 @@ public class Item {
         this.price = price;
     }
 
-    public void setPriceUnit(int priceUnit) {
+    public void setPriceUnit(String priceUnit) {
         this.priceUnit = priceUnit;
     }
 
@@ -86,7 +85,7 @@ public class Item {
         return id;
     }
 
-    public long getUpc() {
+    public String getUpc() {
         return upc;
     }
 
@@ -98,8 +97,8 @@ public class Item {
         return brand;
     }
 
-    public String getProduct() {
-        return product;
+    public String getName() {
+        return name;
     }
 
     public int getUnit() {
@@ -110,7 +109,7 @@ public class Item {
         return price;
     }
 
-    public int getPriceUnit() {
+    public String getPriceUnit() {
         return priceUnit;
     }
 

@@ -1,3 +1,8 @@
+<!--
+    Course: CSI257 Android Development
+    Name: Thanh Vuong
+-->
+
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -43,6 +48,7 @@
         <EditText
             android:id="@+id/item_package_size"
             android:text="@string/msg_not_available"
+            android:inputType="numberDecimal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
@@ -63,6 +69,7 @@
         <EditText
             android:id="@+id/item_total_price"
             android:text="@string/msg_not_available"
+            android:inputType="numberDecimal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"/>

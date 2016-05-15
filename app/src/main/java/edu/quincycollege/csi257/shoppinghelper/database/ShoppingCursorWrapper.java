@@ -15,13 +15,13 @@ public class ShoppingCursorWrapper extends CursorWrapper {
 
     public Item getShoppingItem() {
         String uuidString = getString(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.UUID));
-        long upc = getLong(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.UPC));
+        String upc = getString(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.UPC));
         int onTheList = getInt(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.ON_THE_LIST));
         String brand = getString(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.BRAND));
         String product = getString(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.PRODUCT));
         int unit = getInt(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.UNIT));
         double price = getDouble(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.PRICE));
-        int priceUnit = getInt(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.PRICE_UNIT));
+        String priceUnit = getString(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.PRICE_UNIT));
         double packageSize = getDouble(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.PACKAGE_SIZE));
         String packageSizeUnit = getString(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.PACKAGE_SIZE_UNIT));
         String store = getString(getColumnIndex(ShoppingDbSchema.ShoppingTable.Cols.STORE));
@@ -30,7 +30,7 @@ public class ShoppingCursorWrapper extends CursorWrapper {
         shoppingItem.setUpc(upc);
         shoppingItem.setOnTheList(onTheList != 0);
         shoppingItem.setBrand(brand);
-        shoppingItem.setProduct(product);
+        shoppingItem.setName(product);
         shoppingItem.setUnit(unit);
         shoppingItem.setPrice(price);
         shoppingItem.setPriceUnit(priceUnit);

@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class ShoppingListActivity extends AppCompatActivity {
-
+    private ShoppingList mShoppingList;
     private RecyclerView mRecyclerView;
     private ShoppingAdapter mShoppingAdapter;
 
@@ -67,13 +67,14 @@ public class ShoppingListActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        ShoppingList closet = ShoppingList.get(this);
-        List<Item> clothingList = closet.getShoppingList();
+        mShoppingList = ShoppingList.get(this);
+        List<Item> itemList = mShoppingList.getShoppingList();
         if (mShoppingAdapter == null) {
-            mShoppingAdapter = new ShoppingAdapter(clothingList);
+            mShoppingAdapter = new ShoppingAdapter(itemList);
             mRecyclerView.setAdapter(mShoppingAdapter);
         }
         else {
+            mShoppingAdapter.setShoppingList(itemList);
             mShoppingAdapter.notifyDataSetChanged();
         }
     }
@@ -103,19 +104,17 @@ public class ShoppingListActivity extends AppCompatActivity {
         public void bindClothingItem(Item item) {
             mShoppingItem = item;
             mItemBrand.setText(item.getBrand());
-            mItemProduct.setText(item.getProduct());
-            mItemUnit.setText(Integer.toString(item.getPriceUnit()));
+            mItemProduct.setText(item.getName());
+            mItemUnit.setText(item.getPriceUnit());
             mItemPackage.setText(Double.toString(item.getPackageSize()) + " " + item.getPackageSizeUnit());
             mItemPrice.setText("$" + Double.toString(item.getPrice()));
         }
 
         @Override
         public void onClick(View v) {
-            //Toast.makeText(getActivity(), mClothingItem.getName(), Toast.LENGTH_SHORT).show();
-            //Intent intent = ClothingPagerActivity.newIntent(getActivity(), mClothingItem.getId());
-            //startActivity(intent);
-
-            startActivity(new Intent(ShoppingListActivity.this, ItemActivity.class));
+            Intent intent = ItemActivity.createIntentWithUuid(ShoppingListActivity.this,
+                                                              mShoppingItem.getId());
+            startActivity(intent);
         }
     }
 
@@ -145,6 +144,10 @@ public class ShoppingListActivity extends AppCompatActivity {
             Item item = mShoppingList.get(position);
             //holder.mItemName.setText(item.getName());
             holder.bindClothingItem(item);
+        }
+
+        private void setShoppingList(List<Item> list) {
+            this.mShoppingList = list;
         }
     }
 

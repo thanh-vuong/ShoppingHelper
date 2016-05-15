@@ -1,5 +1,7 @@
 package edu.quincycollege.csi257.shoppinghelper;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,7 +9,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.UUID;
+
+/*
+ * Course: CSI257 Android Development
+ * Name: Thanh Vuong
+ *
+ */
+
+/**
+ * Activity for searching and adding item to shopping list
+ *
+ *
+ */
+
 public class ItemSearchActivity extends AppCompatActivity {
+    // Key for pack/unpack item UUID
+    private static final String EXTRA_ITEM_ID = "edu.quincycollege.csi257.shoppinghelper.item_uuid";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,4 +44,16 @@ public class ItemSearchActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method creates intent with UUID of item.
+     */
+    public static Intent createIntentWithUuid(Context context,
+                                              UUID id)
+    {
+        Intent intent = new Intent(context,
+                                   ItemSearchActivity.class);
+        intent.putExtra(EXTRA_ITEM_ID,
+                        id);
+        return intent;
+    }
 }

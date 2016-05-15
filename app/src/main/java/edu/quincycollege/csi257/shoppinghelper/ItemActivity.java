@@ -1,5 +1,6 @@
 package edu.quincycollege.csi257.shoppinghelper;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -16,10 +17,24 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.UUID;
+
+/*
+ * Course: CSI257 Android Development
+ * Name: Thanh Vuong
+ *
+ */
+
+/**
+ * Activity hosting an item details fragment.
+ */
 public class ItemActivity
     extends AppCompatActivity
     implements ItemDetailsFragment.OnUpcScannedListener
 {
+    // Key for pack/unpack item UUID
+    private static final String EXTRA_ITEM_ID = "edu.quincycollege.csi257.shoppinghelper.item_uuid";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +51,8 @@ public class ItemActivity
             }
         });
 
-        ItemDetailsFragment itemDetailsFragment = ItemDetailsFragment.newInstance("placeholder", "placeholder");
+        UUID id = (UUID)getIntent().getSerializableExtra(EXTRA_ITEM_ID);
+        ItemDetailsFragment itemDetailsFragment = ItemDetailsFragment.newInstance(id);
         setFragment(itemDetailsFragment);
 
     }
@@ -59,5 +75,18 @@ public class ItemActivity
         FragmentManager fm = getSupportFragmentManager();
         if (fm.findFragmentById(R.id.fragment_container) == null)
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
+    }
+
+    /**
+     * Method creates intent with UUID of item.
+     */
+    public static Intent createIntentWithUuid(Context context,
+                                              UUID id)
+    {
+        Intent intent = new Intent(context,
+                ItemActivity.class);
+        intent.putExtra(EXTRA_ITEM_ID,
+                id);
+        return intent;
     }
 }
